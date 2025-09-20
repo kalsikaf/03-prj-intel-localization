@@ -1,0 +1,232 @@
+/* ====== Base & Layout ====== */
+:root {
+  --brand-primary: #0d6efd;  /* Bootstrap primary */
+  --brand-dark: #0a58ca;
+  --text-muted: #6c757d;
+  --card-bg: #ffffff;
+  --page-bg: #ffffff;
+  --soft-bg: #f8f9fa;        /* Bootstrap's bg-light */
+  --border: #e5e7eb;         /* light gray */
+  --focus: #ffbf47;          /* high-contrast focus ring */
+}
+
+html, body {
+  background: var(--page-bg);
+  color: #212529;
+}
+
+/* Keep hero images and timeline images contained */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve default link visibility & contrast */
+a {
+  color: var(--brand-primary);
+  text-underline-offset: 2px;
+}
+a:hover, a:focus {
+  color: var(--brand-dark);
+  text-decoration: underline;
+}
+
+/* ====== Section Wrappers ====== */
+section {
+  padding-block: 2.5rem;
+}
+section.bg-light,
+section.light,
+section.alt {
+  background: var(--soft-bg);
+}
+
+/* ====== Three-Column “Impact Focus Areas” ====== */
+/* Container helpers if you aren’t wrapping with Bootstrap .container */
+section .container {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Section title */
+#impact-heading {
+  margin-block-end: 0.25rem;
+  text-align: center;
+}
+#impact-heading + p {
+  margin-block: 0 1.5rem;
+  color: var(--text-muted);
+}
+
+/* Cards (articles) */
+article.h-100 {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem; /* rounded-4 */
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.06); /* shadow-sm */
+}
+
+/* Heading row with icon */
+.feature-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+article h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* Ensure nice spacing inside cards */
+article p {
+  margin-block: 0 1rem;
+}
+
+/* “Learn more” link style (button-like link) */
+.link-learn {
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.link-learn:hover,
+.link-learn:focus {
+  text-decoration: underline;
+}
+
+/* ====== Responsive grid if you AREN’T using Bootstrap row/cols ======
+   (If you used Bootstrap’s .row + .col-* on these cards, this block is ignored.)
+--------------------------------------------------------------------*/
+@supports (display: grid) {
+  /* Target the row that wraps the 3 cards when not using Bootstrap grid */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .impact-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 992px) {
+    .impact-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+}
+
+/* ====== Subscription Form ====== */
+form.needs-validation {
+  background: var(--soft-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+form.needs-validation h2 {
+  margin-block-end: 0.5rem;
+}
+form .form-text {
+  color: var(--text-muted);
+}
+
+/* Make invalid feedback obvious even without Bootstrap loaded */
+input:invalid ~ .invalid-feedback,
+select:invalid ~ .invalid-feedback,
+textarea:invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Demo-only success status text */
+#subscribeStatus {
+  color: #198754; /* Bootstrap success color */
+  font-weight: 600;
+}
+
+/* ====== Footer ====== */
+footer {
+  background: #fff;
+  border-top: 1px solid var(--border);
+}
+footer .nav .nav-link {
+  color: #495057;
+}
+footer .nav .nav-link:hover,
+footer .nav .nav-link:focus {
+  color: #212529;
+  text-decoration: underline;
+}
+
+/* ====== Accessibility & Focus ====== */
+/* Larger, visible focus rings (high contrast, offset) */
+:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+/* Don’t double-outline Bootstrap’s .btn, inputs, etc. */
+.btn:focus,
+.form-control:focus,
+.nav-link:focus {
+  box-shadow: none !important;
+}
+
+/* Ensure headings never collapse visually */
+h1, h2, h3 {
+  line-height: 1.25;
+}
+
+/* ====== RTL-Friendly Adjustments ====== */
+/* Use logical properties so it works in both LTR & RTL */
+article.h-100 {
+  padding-inline: 1.25rem;
+  padding-block: 1.25rem;
+}
+
+/* Gap between icon and heading should respect RTL */
+.d-flex.gap-3,
+.gap-3 {
+  gap: 1rem; /* fallback if Bootstrap not loaded */
+}
+
+/* If page is RTL, keep inline progression natural */
+html[dir="rtl"] .link-learn i.bi-arrow-right::before {
+  /* Flip to arrow-left icon if you prefer. If using icons font, you’d swap class in HTML.
+     Here we leave it as-is to avoid content jumping. */
+}
+
+/* ====== Nice-to-haves for your existing hero/timeline ====== */
+/* Keep header centered and readable */
+header > div {
+  max-width: 960px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  text-align: center;
+}
+
+/* Timeline cards (your existing flexbox section) — light polish only */
+section > div > img {
+  border-radius: 0.5rem;
+}
+
+/* Make placeholder images accessible-looking (remove if not desired) */
+img[alt~="Placeholder"] {
+  filter: grayscale(5%);
+}
+
+/* Improve spacing between main sections on small screens */
+@media (max-width: 576px) {
+  section { padding-block: 2rem; }
+}
+
+/* ====== Utility fallbacks if Bootstrap classes are used without Bootstrap ====== */
+.rounded-4 { border-radius: 1rem; }
+.shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.06); }
+.border { border: 1px solid var(--border); }
+.bg-light { background: var(--soft-bg) !important; }
+.text-center { text-align: center; }
+.mb-0 { margin-bottom: 0; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-5 { margin-top: 3rem; }
+.p-4 { padding: 1.5rem; }
+.h-100 { height: 100%; }
+
