@@ -186,11 +186,7 @@ article.h-100 {
   gap: 1rem; /* fallback if Bootstrap not loaded */
 }
 
-/* If page is RTL, keep inline progression natural */
-html[dir="rtl"] .link-learn i.bi-arrow-right::before {
-  /* Flip to arrow-left icon if you prefer. If using icons font, you’d swap class in HTML.
-     Here we leave it as-is to avoid content jumping. */
-}
+
 
 /* ====== Nice-to-haves for your existing hero/timeline ====== */
 /* Keep header centered and readable */
